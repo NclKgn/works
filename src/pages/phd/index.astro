@@ -7,8 +7,8 @@ import { t, getLocale, base } from '../../i18n';
 
 const ui = t(getLocale());
 const progressEntries = await getCollection('phd-progress');
-const overall = progressEntries.find((e) => e.data.id === 'overall');
-const metrics = progressEntries.filter((e) => e.data.id !== 'overall');
+const overall = progressEntries.find((e) => e.id === 'overall');
+const metrics = progressEntries.filter((e) => e.id !== 'overall');
 ---
 
 <BaseLayout title="PhD" description="PhD research on skull base synchondroses in craniofacial development">
