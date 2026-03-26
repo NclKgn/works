@@ -1,25 +1,25 @@
-- id: molecular
+molecular:
   layer: Molecular
   methods: RNAscope, Immunofluorescence
   tools: Confocal microscopy, image analysis pipelines
   description: Mapping gene expression and protein localization in skull base synchondroses.
   order: 1
 
-- id: imaging-3d
+imaging-3d:
   layer: 3D Imaging
   methods: Whole-mount LightSheet Fluorescent Microscopy
   tools: Tissue clearing protocols, Imaris, Fiji/ImageJ
   description: Volumetric visualization of synchondrose architecture in developing mouse skulls.
   order: 2
 
-- id: biomechanics
+biomechanics:
   layer: Biomechanics
   methods: Ex vivo mechanical stimulation
   tools: Custom culture rigs, force measurement, analysis software
   description: Investigating mechanical response of skull base cartilage under controlled loading.
   order: 3
 
-- id: clinical
+clinical:
   layer: Clinical Atlas
   methods: Human skull base atlas (fetal → end of growth)
   tools: CT/CBCT imaging, 3D Slicer, statistical shape analysis

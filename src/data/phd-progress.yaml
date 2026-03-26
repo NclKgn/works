@@ -1,18 +1,18 @@
-- id: overall
+overall:
   label: Overall
   value: 0
 
-- id: biology
+biology:
   label: Biology
   value: 0
   color: "#2d8a4e"
 
-- id: biomechanics
+biomechanics:
   label: Biomechanics
   value: 0
   color: "#e07b2a"
 
-- id: human-data
+human-data:
   label: Human Data
   value: 0
   color: "#c0392b"

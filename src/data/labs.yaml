@@ -1,4 +1,4 @@
-- id: lab-placeholder-1
+lab-placeholder-1:
   name: "[Lab Name]"
   pi: "[PI Name]"
   institution: Arts et Métiers Institute of Technology
@@ -6,7 +6,7 @@
   work: "[Describe your work in this lab]"
   url: ""
 
-- id: lab-placeholder-2
+lab-placeholder-2:
   name: "[Lab/Department Name]"
   pi: "[Department Head]"
   institution: Necker Hospital
