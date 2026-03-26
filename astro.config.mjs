@@ -7,7 +7,10 @@ export default defineConfig({
   base: '/works',
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/phd/lab') && !page.includes('/phd/meetings'),
+      filter: (page) =>
+        !page.includes('/phd/lab') &&
+        !page.includes('/phd/meetings') &&
+        !page.includes('/admin'),
     }),
   ],
   i18n: {
