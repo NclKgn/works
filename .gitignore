@@ -11,5 +11,4 @@ Gemfile.lock
 
 # Astro
 dist/
-node_modules/
 .astro/
