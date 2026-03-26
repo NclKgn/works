@@ -1,6 +1,7 @@
 ---
 // src/components/Nav.astro
 import { t, getLocale, base } from '../i18n';
+import ThemeToggle from './ThemeToggle.astro';
 
 const ui = t(getLocale());
 const navLinks = [
@@ -39,6 +40,7 @@ const currentPath = Astro.url.pathname;
         <span class="nav-lang-sep">/</span>
         <a href="#" class="nav-link nav-lang-inactive">FR</a>
       </span>
+      <ThemeToggle />
     </div>
   </div>
 </nav>
@@ -55,7 +57,7 @@ const currentPath = Astro.url.pathname;
   }
 
   .site-nav.scrolled {
-    background: rgba(250, 250, 249, 0.85);
+    background: var(--c-nav-backdrop);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 0 1px 0 var(--c-border);
@@ -150,7 +152,7 @@ const currentPath = Astro.url.pathname;
       right: 0;
       flex-direction: column;
       padding: var(--space-md) 24px var(--space-lg);
-      background: rgba(250, 250, 249, 0.95);
+      background: var(--c-nav-backdrop);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       box-shadow: var(--shadow-lg);
