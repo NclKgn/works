@@ -9,6 +9,7 @@ export async function GET(context) {
     description: 'Weekly digests of PhD research on skull base synchondroses.',
     site: context.site,
     items: posts
+      .filter((post) => !post.data.draft)
       .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
       .map((post) => ({
         title: post.data.title,
