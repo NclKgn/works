@@ -2,7 +2,7 @@ backend:
   name: github
   repo: NclKgn/works
   branch: main
-  base_url: https://PLACEHOLDER.workers.dev
+  base_url: https://sveltia-cms-auth.nikogane.workers.dev
 
 media_folder: public/uploads
 public_folder: /works/uploads
