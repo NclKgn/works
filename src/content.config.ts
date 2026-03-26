@@ -84,6 +84,15 @@ const phdProgress = defineCollection({
   }),
 });
 
+const hero = defineCollection({
+  loader: file('./src/data/hero.yaml'),
+  schema: z.object({
+    name: z.string(),
+    tagline: z.string(),
+    description: z.string(),
+  }),
+});
+
 // ── Private collections (lab notebook, meetings) ──
 
 const labEntries = defineCollection({
@@ -115,6 +124,7 @@ export const collections = {
   cv,
   stack,
   labs,
+  hero,
   'phd-progress': phdProgress,
   'lab-entries': labEntries,
   meetings,

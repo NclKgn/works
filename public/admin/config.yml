@@ -101,6 +101,18 @@ collections:
   - name: data
     label: "Data"
     files:
+      - name: hero
+        label: "Hero"
+        file: src/data/hero.yaml
+        fields:
+          - label: Hero
+            name: hero
+            widget: object
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Tagline, name: tagline, widget: string }
+              - { label: Description, name: description, widget: text }
+
       - name: phd-progress
         label: "PhD Progress"
         file: src/data/phd-progress.yaml

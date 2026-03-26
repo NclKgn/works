@@ -1,9 +1,10 @@
 ---
 // src/components/Hero.astro
 import motif from '../assets/skull-base-motif.svg';
-import { t, getLocale } from '../i18n';
+import { getEntry } from 'astro:content';
 
-const ui = t(getLocale());
+const entry = await getEntry('hero', 'hero');
+const { name, tagline, description } = entry!.data;
 ---
 
 <section class="hero">
@@ -12,9 +13,9 @@ const ui = t(getLocale());
   </div>
 
   <div class="container hero-content">
-    <h1 class="hero-name">Nicolas Kogane</h1>
-    <p class="hero-tagline small-caps">{ui.hero.tagline}</p>
-    <p class="hero-desc">{ui.hero.description}</p>
+    <h1 class="hero-name">{name}</h1>
+    <p class="hero-tagline small-caps">{tagline}</p>
+    <p class="hero-desc">{description}</p>
   </div>
 
   <div class="hero-scroll" aria-hidden="true">
