@@ -1,0 +1,97 @@
+backend:
+  name: github
+  repo: nclkgn/works
+  branch: main
+  base_url: https://PLACEHOLDER.workers.dev
+
+media_folder: public/uploads
+public_folder: /works/uploads
+
+collections:
+  # ── Lab Entries (private) ──────────────────────────
+
+  - name: lab-entries
+    label: "Lab Entries"
+    label_singular: "Lab Entry"
+    folder: src/content/lab-entries
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortable_fields: [date, title]
+    summary: "{{year}}-{{month}}-{{day}} — {{title}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime, format: YYYY-MM-DD, date_format: YYYY-MM-DD, time_format: false }
+      - { label: Tags, name: tags, widget: list, default: [] }
+      - { label: Draft, name: draft, widget: boolean, default: false }
+      - { label: Body, name: body, widget: markdown, modes: [rich_text, raw] }
+
+  # ── Meetings (private) ─────────────────────────────
+
+  - name: meetings
+    label: "Meetings"
+    label_singular: "Meeting"
+    folder: src/content/meetings
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortable_fields: [date, title]
+    summary: "{{year}}-{{month}}-{{day}} — {{title}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime, format: YYYY-MM-DD, date_format: YYYY-MM-DD, time_format: false }
+      - { label: Attendees, name: attendees, widget: list, default: [] }
+      - { label: Decisions, name: decisions, widget: list, default: [] }
+      - { label: Actions, name: actions, widget: list, default: [] }
+      - { label: Draft, name: draft, widget: boolean, default: false }
+      - { label: Body, name: body, widget: markdown, modes: [rich_text, raw] }
+
+  # ── Newsletter (public) ────────────────────────────
+
+  - name: newsletter
+    label: "Newsletter"
+    label_singular: "Newsletter Post"
+    folder: src/content/newsletter
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortable_fields: [date, title]
+    summary: "{{year}}-{{month}}-{{day}} — {{title}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Date, name: date, widget: datetime, format: YYYY-MM-DD, date_format: YYYY-MM-DD, time_format: false }
+      - { label: Summary, name: summary, widget: text }
+      - { label: Tags, name: tags, widget: list, default: [] }
+      - { label: Draft, name: draft, widget: boolean, default: false }
+      - { label: Body, name: body, widget: markdown, modes: [rich_text, raw] }
+
+  # ── Projects (public) ──────────────────────────────
+
+  - name: projects
+    label: "Projects"
+    label_singular: "Project"
+    folder: src/content/projects
+    create: true
+    slug: "{{slug}}"
+    sortable_fields: [order, title]
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Status, name: status, widget: select, options: [ongoing, completed, upcoming] }
+      - { label: Domain, name: domain, widget: select, multiple: true, options: [research, clinical, engineering] }
+      - { label: Summary, name: summary, widget: text }
+      - { label: Collaborators, name: collaborators, widget: list, default: [] }
+      - { label: Order, name: order, widget: number, default: 0, value_type: int }
+      - { label: Draft, name: draft, widget: boolean, default: false }
+      - { label: Body, name: body, widget: markdown, modes: [rich_text, raw] }
+
+  # ── Misc (public) ──────────────────────────────────
+
+  - name: misc
+    label: "Misc"
+    label_singular: "Misc Entry"
+    folder: src/content/misc
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Category, name: category, widget: string }
+      - { label: Date, name: date, widget: datetime, format: YYYY-MM-DD, date_format: YYYY-MM-DD, time_format: false, required: false }
+      - { label: Draft, name: draft, widget: boolean, default: false }
+      - { label: Body, name: body, widget: markdown, modes: [rich_text, raw] }
