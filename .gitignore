@@ -1,14 +1,11 @@
-_site/
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata
-vendor/
-node_modules/
-.DS_Store
-*.swp
-*~
-Gemfile.lock
-
 # Astro
 dist/
+node_modules/
 .astro/
+
+# Environment
+.env
+.env.*
+
+# OS
+.DS_Store
