@@ -1,0 +1,67 @@
+---
+// src/pages/cv.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TimelineEntry from '../components/TimelineEntry.astro';
+import { getCollection } from 'astro:content';
+
+const allEntries = await getCollection('cv');
+
+const sections = [
+  { key: 'education', label: 'Education' },
+  { key: 'clinical', label: 'Clinical Experience' },
+  { key: 'research', label: 'Research' },
+  { key: 'skills', label: 'Skills & Certifications' },
+];
+---
+
+<BaseLayout title="CV" description="Curriculum Vitae — Nicolas Kogane">
+  <div class="container section">
+    <div class="cv-header">
+      <h1>Curriculum Vitae</h1>
+      <a href="#" class="cv-download mono">Download PDF &darr;</a>
+    </div>
+
+    {sections.map(({ key, label }) => {
+      const entries = allEntries
+        .filter((e) => e.data.section === key);
+
+      return entries.length > 0 && (
+        <section class="cv-section">
+          <h2 class="cv-section-label small-caps">{label}</h2>
+          {entries.map((entry) => (
+            <TimelineEntry
+              year={entry.data.year}
+              title={entry.data.title}
+              institution={entry.data.institution}
+              description={entry.data.description}
+            />
+          ))}
+        </section>
+      );
+    })}
+  </div>
+</BaseLayout>
+
+<style>
+  .cv-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: var(--space-xl);
+  }
+
+  .cv-download {
+    font-size: 0.8rem;
+    color: var(--c-accent);
+  }
+
+  .cv-section {
+    margin-bottom: var(--space-xl);
+  }
+
+  .cv-section-label {
+    color: var(--c-text-3);
+    margin-bottom: var(--space-md);
+    font-family: var(--font-body);
+  }
+</style>
