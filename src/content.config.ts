@@ -44,7 +44,6 @@ const misc = defineCollection({
 const cv = defineCollection({
   loader: file('./src/data/cv.yaml'),
   schema: z.object({
-    id: z.string(),
     section: z.enum(['education', 'clinical', 'research', 'skills']),
     year: z.string(),
     title: z.string(),
@@ -56,7 +55,6 @@ const cv = defineCollection({
 const stack = defineCollection({
   loader: file('./src/data/stack.yaml'),
   schema: z.object({
-    id: z.string(),
     layer: z.string(),
     methods: z.string(),
     tools: z.string(),
@@ -68,7 +66,6 @@ const stack = defineCollection({
 const labs = defineCollection({
   loader: file('./src/data/labs.yaml'),
   schema: z.object({
-    id: z.string(),
     name: z.string(),
     pi: z.string(),
     institution: z.string(),
@@ -81,7 +78,6 @@ const labs = defineCollection({
 const phdProgress = defineCollection({
   loader: file('./src/data/phd-progress.yaml'),
   schema: z.object({
-    id: z.string(),
     label: z.string(),
     value: z.number(),
     color: z.string().optional(),
