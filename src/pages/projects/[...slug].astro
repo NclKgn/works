@@ -3,14 +3,10 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
 import { base } from '../../i18n';
+import { isSectionVisible } from '../../lib/visibility';
 
 export async function getStaticPaths() {
-  const isDev = import.meta.env.DEV;
-  if (!isDev) {
-    const vis = await getCollection('visibility');
-    const entry = vis.find((e) => e.id === 'projects');
-    if (!entry?.data.value) return [];
-  }
+  if (!(await isSectionVisible('projects'))) return [];
 
   const projects = (await getCollection('projects'))
     .filter((project) => !project.data.draft);

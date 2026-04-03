@@ -1,7 +1,7 @@
 ---
 // src/components/Nav.astro
 import { t, getLocale, base } from '../i18n';
-import { getCollection } from 'astro:content';
+import { getVisibleSections } from '../lib/visibility';
 import ThemeToggle from './ThemeToggle.astro';
 
 const ui = t(getLocale());
@@ -16,11 +16,7 @@ const allNavLinks = [
   { href: base('/misc'), label: ui.nav.misc, section: 'misc' },
 ];
 
-let visibleSections: Set<string> = new Set();
-if (!isDev) {
-  const vis = await getCollection('visibility');
-  vis.filter((e) => e.data.value).forEach((e) => visibleSections.add(e.id));
-}
+const visibleSections = new Set(await getVisibleSections());
 
 const navLinks = allNavLinks.filter(
   (link) => isDev || visibleSections.has(link.section)

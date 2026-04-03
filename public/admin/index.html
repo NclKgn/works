@@ -7,7 +7,13 @@
   <title>Content Manager</title>
 </head>
 <body>
+  <script>
+    window.CMS_MANUAL_INIT = true;
+  </script>
   <script src="https://unpkg.com/@sveltia/cms@0.150.1/dist/sveltia-cms.js"></script>
   <script src="./components.js"></script>
+  <script>
+    CMS.init();
+  </script>
 </body>
 </html>

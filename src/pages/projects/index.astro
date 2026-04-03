@@ -4,19 +4,14 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
 import { base } from '../../i18n';
+import { isSectionVisible } from '../../lib/visibility';
 
-const isDev = import.meta.env.DEV;
-
-if (!isDev) {
-  const vis = await getCollection('visibility');
-  const entry = vis.find((e) => e.id === 'projects');
-  if (!entry?.data.value) {
-    return Astro.redirect('/');
-  }
+if (!(await isSectionVisible('projects'))) {
+  return Astro.redirect('/');
 }
 
 const projects = (await getCollection('projects'))
-  .filter((e) => isDev || !e.data.draft)
+  .filter((e) => !e.data.draft)
   .sort((a, b) => a.data.order - b.data.order);
 ---
 

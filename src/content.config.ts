@@ -95,7 +95,7 @@ const hero = defineCollection({
 
 const visibility = defineCollection({
   loader: file('./src/data/visibility.yaml'),
-  schema: z.record(z.string(), z.boolean()),
+  schema: z.boolean(),
 });
 
 // ── Private collections (lab notebook, meetings) ──

@@ -3,15 +3,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import StackLayer from '../components/StackLayer.astro';
 import { getCollection } from 'astro:content';
+import { isSectionVisible } from '../lib/visibility';
 
-const isDev = import.meta.env.DEV;
-
-if (!isDev) {
-  const vis = await getCollection('visibility');
-  const entry = vis.find((e) => e.id === 'stack');
-  if (!entry?.data.value) {
-    return Astro.redirect('/');
-  }
+if (!(await isSectionVisible('stack'))) {
+  return Astro.redirect('/');
 }
 
 const layers = (await getCollection('stack'))

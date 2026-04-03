@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import SectionPreview from '../components/SectionPreview.astro';
 import { t, getLocale, base } from '../i18n';
-import { getCollection } from 'astro:content';
+import { getVisibleSections } from '../lib/visibility';
 
 const ui = t(getLocale());
 const isDev = import.meta.env.DEV;
@@ -15,11 +15,7 @@ const sectionHrefs: Record<string, string> = {
   stack: base('/stack'), labs: base('/labs'), misc: base('/misc'),
 };
 
-let visibleSections: Set<string> = new Set();
-if (!isDev) {
-  const vis = await getCollection('visibility');
-  vis.filter((e) => e.data.value).forEach((e) => visibleSections.add(e.id));
-}
+const visibleSections = new Set(await getVisibleSections());
 
 const sectionKeys = isDev
   ? allSectionKeys

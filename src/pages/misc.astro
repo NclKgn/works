@@ -3,19 +3,14 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import MiscCard from '../components/MiscCard.astro';
 import { getCollection } from 'astro:content';
+import { isSectionVisible } from '../lib/visibility';
 
-const isDev = import.meta.env.DEV;
-
-if (!isDev) {
-  const vis = await getCollection('visibility');
-  const entry = vis.find((e) => e.id === 'misc');
-  if (!entry?.data.value) {
-    return Astro.redirect('/');
-  }
+if (!(await isSectionVisible('misc'))) {
+  return Astro.redirect('/');
 }
 
 const entries = (await getCollection('misc'))
-  .filter((e) => isDev || !e.data.draft)
+  .filter((e) => !e.data.draft)
   .sort((a, b) => {
     const dateA = a.data.date?.getTime() ?? 0;
     const dateB = b.data.date?.getTime() ?? 0;

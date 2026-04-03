@@ -6,15 +6,14 @@ const isDev = import.meta.env.DEV;
 export async function isSectionVisible(key: string): Promise<boolean> {
   if (isDev) return true;
   const vis = await getCollection('visibility');
-  const entry = vis[0];
-  return entry?.data?.[key] ?? false;
+  const entry = vis.find((e) => e.id === key);
+  return entry?.data ?? false;
 }
 
 export async function getVisibleSections(): Promise<string[]> {
   if (isDev) return ['phd', 'projects', 'cv', 'stack', 'labs', 'misc'];
   const vis = await getCollection('visibility');
-  const data = vis[0]?.data ?? {};
-  return Object.entries(data)
-    .filter(([, v]) => v)
-    .map(([k]) => k);
+  return vis
+    .filter((e) => e.data)
+    .map((e) => e.id);
 }

@@ -4,15 +4,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import TimelineEntry from '../components/TimelineEntry.astro';
 import { getCollection } from 'astro:content';
 import { t, getLocale } from '../i18n';
+import { isSectionVisible } from '../lib/visibility';
 
-const isDev = import.meta.env.DEV;
-
-if (!isDev) {
-  const vis = await getCollection('visibility');
-  const cvEntry = vis.find((e) => e.id === 'cv');
-  if (!cvEntry?.data.value) {
-    return Astro.redirect('/');
-  }
+if (!(await isSectionVisible('cv'))) {
+  return Astro.redirect('/');
 }
 
 const ui = t(getLocale());

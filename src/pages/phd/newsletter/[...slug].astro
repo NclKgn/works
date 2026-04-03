@@ -2,14 +2,10 @@
 // src/pages/phd/newsletter/[...slug].astro
 import PostLayout from '../../../layouts/PostLayout.astro';
 import { getCollection, render } from 'astro:content';
+import { isSectionVisible } from '../../../lib/visibility';
 
 export async function getStaticPaths() {
-  const isDev = import.meta.env.DEV;
-  if (!isDev) {
-    const vis = await getCollection('visibility');
-    const entry = vis.find((e) => e.id === 'phd');
-    if (!entry?.data.value) return [];
-  }
+  if (!(await isSectionVisible('phd'))) return [];
 
   const posts = (await getCollection('newsletter'))
     .filter((post) => !post.data.draft);

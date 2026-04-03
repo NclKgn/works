@@ -3,15 +3,10 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LabCard from '../components/LabCard.astro';
 import { getCollection } from 'astro:content';
+import { isSectionVisible } from '../lib/visibility';
 
-const isDev = import.meta.env.DEV;
-
-if (!isDev) {
-  const vis = await getCollection('visibility');
-  const entry = vis.find((e) => e.id === 'labs');
-  if (!entry?.data.value) {
-    return Astro.redirect('/');
-  }
+if (!(await isSectionVisible('labs'))) {
+  return Astro.redirect('/');
 }
 
 const labEntries = await getCollection('labs');
