@@ -1,17 +1,30 @@
 ---
 // src/components/Nav.astro
 import { t, getLocale, base } from '../i18n';
+import { getCollection } from 'astro:content';
 import ThemeToggle from './ThemeToggle.astro';
 
 const ui = t(getLocale());
-const navLinks = [
-  { href: base('/phd'), label: ui.nav.phd },
-  { href: base('/projects'), label: ui.nav.projects },
-  { href: base('/cv'), label: ui.nav.cv },
-  { href: base('/stack'), label: ui.nav.stack },
-  { href: base('/labs'), label: ui.nav.labs },
-  { href: base('/misc'), label: ui.nav.misc },
+const isDev = import.meta.env.DEV;
+
+const allNavLinks = [
+  { href: base('/phd'), label: ui.nav.phd, section: 'phd' },
+  { href: base('/projects'), label: ui.nav.projects, section: 'projects' },
+  { href: base('/cv'), label: ui.nav.cv, section: 'cv' },
+  { href: base('/stack'), label: ui.nav.stack, section: 'stack' },
+  { href: base('/labs'), label: ui.nav.labs, section: 'labs' },
+  { href: base('/misc'), label: ui.nav.misc, section: 'misc' },
 ];
+
+let visibleSections: Set<string> = new Set();
+if (!isDev) {
+  const vis = await getCollection('visibility');
+  vis.filter((e) => e.data.value).forEach((e) => visibleSections.add(e.id));
+}
+
+const navLinks = allNavLinks.filter(
+  (link) => isDev || visibleSections.has(link.section)
+);
 
 const currentPath = Astro.url.pathname;
 ---

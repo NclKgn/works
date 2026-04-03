@@ -93,6 +93,13 @@ const hero = defineCollection({
   }),
 });
 
+const visibility = defineCollection({
+  loader: file('./src/data/visibility.yaml'),
+  schema: z.object({
+    value: z.boolean(),
+  }),
+});
+
 // ── Private collections (lab notebook, meetings) ──
 
 const labEntries = defineCollection({
@@ -128,4 +135,5 @@ export const collections = {
   'phd-progress': phdProgress,
   'lab-entries': labEntries,
   meetings,
+  visibility,
 };

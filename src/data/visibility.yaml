@@ -1,0 +1,12 @@
+phd:
+  value: true
+projects:
+  value: true
+cv:
+  value: true
+stack:
+  value: true
+labs:
+  value: true
+misc:
+  value: true

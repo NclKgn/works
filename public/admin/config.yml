@@ -251,3 +251,39 @@ collections:
               - { label: Role, name: role, widget: string }
               - { label: Work, name: work, widget: text }
               - { label: URL, name: url, widget: string, required: false }
+
+  # ── Section Visibility (public) ────────────────────
+
+  - name: visibility
+    label: "Section Visibility"
+    files:
+      - name: phd
+        label: "PhD"
+        file: src/data/visibility.yaml
+        fields:
+          - { label: Visible, name: value, widget: boolean, default: true }
+      - name: projects
+        label: "Projects"
+        file: src/data/visibility.yaml
+        fields:
+          - { label: Visible, name: value, widget: boolean, default: true }
+      - name: cv
+        label: "CV"
+        file: src/data/visibility.yaml
+        fields:
+          - { label: Visible, name: value, widget: boolean, default: true }
+      - name: stack
+        label: "Stack"
+        file: src/data/visibility.yaml
+        fields:
+          - { label: Visible, name: value, widget: boolean, default: true }
+      - name: labs
+        label: "Labs"
+        file: src/data/visibility.yaml
+        fields:
+          - { label: Visible, name: value, widget: boolean, default: true }
+      - name: misc
+        label: "Misc"
+        file: src/data/visibility.yaml
+        fields:
+          - { label: Visible, name: value, widget: boolean, default: true }

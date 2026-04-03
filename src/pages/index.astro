@@ -4,13 +4,27 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import SectionPreview from '../components/SectionPreview.astro';
 import { t, getLocale, base } from '../i18n';
+import { getCollection } from 'astro:content';
 
 const ui = t(getLocale());
-const sectionKeys = ['phd', 'projects', 'cv', 'stack', 'labs', 'misc'] as const;
+const isDev = import.meta.env.DEV;
+
+const allSectionKeys = ['phd', 'projects', 'cv', 'stack', 'labs', 'misc'] as const;
 const sectionHrefs: Record<string, string> = {
   phd: base('/phd'), projects: base('/projects'), cv: base('/cv'),
   stack: base('/stack'), labs: base('/labs'), misc: base('/misc'),
 };
+
+let visibleSections: Set<string> = new Set();
+if (!isDev) {
+  const vis = await getCollection('visibility');
+  vis.filter((e) => e.data.value).forEach((e) => visibleSections.add(e.id));
+}
+
+const sectionKeys = isDev
+  ? allSectionKeys
+  : allSectionKeys.filter((key) => visibleSections.has(key));
+
 const sections = sectionKeys.map((key) => ({
   title: ui.sections[key].title,
   description: ui.sections[key].description,
